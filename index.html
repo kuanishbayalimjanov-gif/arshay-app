@@ -2,123 +2,164 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Arshya Modern</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b130e;
-            --card-bg: #14221a;
-            --accent-gold: #d4af37;
-            --text-color: #e2e8f0;
-            --text-muted: #94a3b8;
-            --border-color: #1f3327;
+            --bg-gradient: linear-gradient(135deg, #0a0e14 0%, #121824 100%);
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(212, 175, 55, 0.25);
+            --gold-primary: #d4af37;
+            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+            --text-main: #ffffff;
+            --text-muted: #8b9bb4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding-bottom: 70px;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding-bottom: 90px;
+            overflow-x: hidden;
         }
 
+        /* Header */
         .header {
-            padding: 16px;
-            background: linear-gradient(180deg, #14221a 0%, var(--bg-color) 100%);
             text-align: center;
-            border-bottom: 1px solid var(--border-color);
+            padding: 25px 20px 15px;
+            background: rgba(10, 14, 20, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 20px;
         }
 
         .header h1 {
-            margin: 0;
-            font-size: 20px;
-            color: var(--accent-gold);
-            letter-spacing: 1px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            margin-bottom: 4px;
         }
 
         .header p {
-            margin: 4px 0 0;
             font-size: 12px;
             color: var(--text-muted);
+            letter-spacing: 1px;
         }
 
+        /* Container */
         .container {
-            padding: 16px;
+            padding: 0 16px;
         }
 
         .section-title {
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold-primary);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-gold);
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        /* Card Styles */
+        .card-list {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
         }
 
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 14px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .card-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            background-color: #1f3327;
+        .card:active {
+            transform: scale(0.98);
+            border-color: var(--gold-primary);
+        }
+
+        .card-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.05));
+            border: 1px solid var(--card-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
+            color: var(--gold-primary);
+            flex-shrink: 0;
         }
 
         .card-info {
-            flex: 1;
+            flex-grow: 1;
         }
 
         .card-title {
-            font-weight: 600;
-            font-size: 15px;
-            margin-bottom: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 3px;
         }
 
-        .card-desc {
+        .card-subtitle {
             font-size: 12px;
             color: var(--text-muted);
+            margin-bottom: 6px;
         }
 
-        .card-price {
-            color: var(--accent-gold);
+        .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold-primary);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: 600;
-            margin-top: 4px;
         }
 
-        .rating {
-            color: #fbbf24;
-            font-size: 12px;
-        }
-
+        /* Bottom Navigation Bar */
         .nav-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
+            height: 65px;
+            background: rgba(10, 14, 20, 0.9);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid var(--card-border);
             display: flex;
             justify-content: space-around;
-            padding: 8px 0;
+            align-items: center;
+            z-index: 1000;
+            padding-bottom: 5px;
         }
 
         .nav-item {
@@ -128,107 +169,133 @@
             gap: 4px;
             color: var(--text-muted);
             font-size: 11px;
+            font-weight: 500;
             cursor: pointer;
-            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 33.3%;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+            transition: all 0.3s ease;
         }
 
         .nav-item.active {
-            color: var(--accent-gold);
+            color: var(--gold-primary);
         }
 
+        .nav-item.active i {
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Tab Control */
         .tab-content {
             display: none;
         }
 
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <div class="header">
-        <h1 id="app-title">ARSHYA MODERN</h1>
+        <h1>ARSHYA MODERN</h1>
         <p>Milliy va Zamonaviy Tikuvchilik Platformasi</p>
     </div>
 
     <div class="container">
-        <!-- Tab 1: Mijozlar uchun (Ustalar) -->
+        <!-- TAB 1: USTALAR -->
         <div id="tab-ustalar" class="tab-content active">
-            <div class="section-title">Milliy Qo'l Mehnatlari & Ustalar</div>
-            <div class="grid">
+            <div class="section-title"><i class="fa-solid fa-crown"></i> Milliy Qo'l Mehnatlari & Ustalar</div>
+            <div class="card-list">
                 <div class="card">
-                    <div class="card-img">🪡</div>
+                    <div class="card-avatar"><i class="fa-solid fa-user-ninja"></i></div>
                     <div class="card-info">
                         <div class="card-title">Gulnoza Jalgasova</div>
-                        <div class="card-desc">Nukus | Ethno-wear master</div>
-                        <div class="rating">★ 5.0 (128 sharh)</div>
+                        <div class="card-subtitle">Nukus | Ethno-wear master</div>
+                        <div class="card-badge"><i class="fa-solid fa-star"></i> 5.0 (128 sharh)</div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img">🧵</div>
+                    <div class="card-avatar"><i class="fa-solid fa-scissors"></i></div>
                     <div class="card-info">
                         <div class="card-title">Alisher Niyetullayev</div>
-                        <div class="card-desc">Nukus | Traditional Arts</div>
-                        <div class="rating">★ 4.9 (94 sharh)</div>
+                        <div class="card-subtitle">Nukus | Traditional Arts</div>
+                        <div class="card-badge"><i class="fa-solid fa-star"></i> 4.9 (94 sharh)</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Tab 2: Arshya Furnitura -->
+        <!-- TAB 2: FURNITURA -->
         <div id="tab-furnitura" class="tab-content">
-            <div class="section-title">Furnitura & Aksessuarlar</div>
-            <div class="grid">
+            <div class="section-title"><i class="fa-solid fa-gem"></i> Premium Furnitura & Aksessuarlar</div>
+            <div class="card-list">
                 <div class="card">
-                    <div class="card-img">🔘</div>
+                    <div class="card-avatar"><i class="fa-solid fa-scroll"></i></div>
                     <div class="card-info">
-                        <div class="card-title">Tugma To'plami</div>
-                        <div class="card-desc">Premial turk furniturasi</div>
-                        <div class="card-price">15,000 UZS</div>
+                        <div class="card-title">Ipak va Zardo'zlik Iplari</div>
+                        <div class="card-subtitle">Oliy navli turk va xitoy furnituralari</div>
+                        <div class="card-badge"><i class="fa-solid fa-tag"></i> Ombor mavjud</div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img">🧶</div>
+                    <div class="card-avatar"><i class="fa-solid fa-shirt"></i></div>
                     <div class="card-info">
-                        <div class="card-title">Paxta Iplari</div>
-                        <div class="card-desc">Mustahkam va sifatli iplar</div>
-                        <div class="card-price">8,500 UZS</div>
+                        <div class="card-title">Maxsus Tugmalar & Tasmasimonlar</div>
+                        <div class="card-subtitle">Eksklyuziv dizayndagi furnituralar</div>
+                        <div class="card-badge"><i class="fa-solid fa-tag"></i> Sifat kafolatlangan</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Tab 3: Statistika -->
+        <!-- TAB 3: STATISTIKA -->
         <div id="tab-statistika" class="tab-content">
-            <div class="section-title">Oylik Statistika</div>
-            <div class="card" style="margin-bottom: 12px;">
-                <div class="card-info">
-                    <div class="card-desc">Jami Savdo</div>
-                    <div class="card-title" style="font-size: 20px; color: var(--accent-gold);">1,420 ta</div>
+            <div class="section-title"><i class="fa-solid fa-chart-pie"></i> Platforma Ko'rsatkichlari</div>
+            <div class="card-list">
+                <div class="card">
+                    <div class="card-avatar"><i class="fa-solid fa-users"></i></div>
+                    <div class="card-info">
+                        <div class="card-title">Aktiv Ustalar</div>
+                        <div class="card-subtitle">Jami ro'yxatdan o'tgan ustalar</div>
+                        <div class="card-badge">150+ Usta</div>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-info">
-                    <div class="card-desc">Oylik Daromad</div>
-                    <div class="card-title" style="font-size: 20px; color: #4ade80;">12,500,000 UZS</div>
+                <div class="card">
+                    <div class="card-avatar"><i class="fa-solid fa-box-open"></i></div>
+                    <div class="card-info">
+                        <div class="card-title">Mahsulotlar Turi</div>
+                        <div class="card-subtitle">Sotuvdagi furnituralar soni</div>
+                        <div class="card-badge">500+ Turda</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bottom Navigation -->
+    <!-- Navigation Bar -->
     <div class="nav-bar">
         <div class="nav-item active" onclick="switchTab('ustalar', this)">
-            <span>👥</span>
+            <i class="fa-solid fa-user-group"></i>
             <span>Ustalar</span>
         </div>
         <div class="nav-item" onclick="switchTab('furnitura', this)">
-            <span>🧵</span>
+            <i class="fa-solid fa-boxes-stacked"></i>
             <span>Furnitura</span>
         </div>
         <div class="nav-item" onclick="switchTab('statistika', this)">
-            <span>📊</span>
+            <i class="fa-solid fa-chart-line"></i>
             <span>Statistika</span>
         </div>
     </div>
@@ -237,12 +304,16 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        function switchTab(tabName, el) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-
+        function switchTab(tabName, element) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
             document.getElementById('tab-' + tabName).classList.add('active');
-            el.classList.add('active');
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
         }
     </script>
 </body>
