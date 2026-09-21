@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arshya Modern</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b130e;
+            --card-bg: #14221a;
+            --accent-gold: #d4af37;
+            --text-color: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #1f3327;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 70px;
+        }
+
+        .header {
+            padding: 16px;
+            background: linear-gradient(180deg, #14221a 0%, var(--bg-color) 100%);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            margin: 4px 0 0;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-color: #1f3327;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .card-price {
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .rating {
+            color: #fbbf24;
+            font-size: 12px;
+        }
+
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            font-size: 11px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-item.active {
+            color: var(--accent-gold);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 id="app-title">ARSHYA MODERN</h1>
+        <p>Milliy va Zamonaviy Tikuvchilik Platformasi</p>
+    </div>
+
+    <div class="container">
+        <!-- Tab 1: Mijozlar uchun (Ustalar) -->
+        <div id="tab-ustalar" class="tab-content active">
+            <div class="section-title">Milliy Qo'l Mehnatlari & Ustalar</div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">🪡</div>
+                    <div class="card-info">
+                        <div class="card-title">Gulnoza Jalgasova</div>
+                        <div class="card-desc">Nukus | Ethno-wear master</div>
+                        <div class="rating">★ 5.0 (128 sharh)</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">🧵</div>
+                    <div class="card-info">
+                        <div class="card-title">Alisher Niyetullayev</div>
+                        <div class="card-desc">Nukus | Traditional Arts</div>
+                        <div class="rating">★ 4.9 (94 sharh)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Arshya Furnitura -->
+        <div id="tab-furnitura" class="tab-content">
+            <div class="section-title">Furnitura & Aksessuarlar</div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img">🔘</div>
+                    <div class="card-info">
+                        <div class="card-title">Tugma To'plami</div>
+                        <div class="card-desc">Premial turk furniturasi</div>
+                        <div class="card-price">15,000 UZS</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">🧶</div>
+                    <div class="card-info">
+                        <div class="card-title">Paxta Iplari</div>
+                        <div class="card-desc">Mustahkam va sifatli iplar</div>
+                        <div class="card-price">8,500 UZS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Statistika -->
+        <div id="tab-statistika" class="tab-content">
+            <div class="section-title">Oylik Statistika</div>
+            <div class="card" style="margin-bottom: 12px;">
+                <div class="card-info">
+                    <div class="card-desc">Jami Savdo</div>
+                    <div class="card-title" style="font-size: 20px; color: var(--accent-gold);">1,420 ta</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-info">
+                    <div class="card-desc">Oylik Daromad</div>
+                    <div class="card-title" style="font-size: 20px; color: #4ade80;">12,500,000 UZS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="nav-bar">
+        <div class="nav-item active" onclick="switchTab('ustalar', this)">
+            <span>👥</span>
+            <span>Ustalar</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('furnitura', this)">
+            <span>🧵</span>
+            <span>Furnitura</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('statistika', this)">
+            <span>📊</span>
+            <span>Statistika</span>
+        </div>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        function switchTab(tabName, el) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+
+            document.getElementById('tab-' + tabName).classList.add('active');
+            el.classList.add('active');
+        }
+    </script>
+</body>
+</html>
