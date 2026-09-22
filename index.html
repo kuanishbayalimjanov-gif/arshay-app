@@ -33,23 +33,22 @@
             overflow-x: hidden;
         }
 
-        /* Header / Logo section */
         .header {
             text-align: center;
-            padding: 25px 20px 15px;
+            padding: 20px 15px 10px;
             background: rgba(10, 14, 20, 0.7);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--card-border);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .brand-logo {
-            width: 90px;
+            width: 75px;
             height: auto;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
             border-radius: 8px;
             background: #ffffff;
@@ -57,170 +56,132 @@
         }
 
         .header h1 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             letter-spacing: 2px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            margin-bottom: 4px;
         }
 
         .header p {
             font-size: 11px;
             color: var(--text-muted);
-            letter-spacing: 1px;
         }
 
-        /* Main Container */
-        .container {
-            padding: 0 16px;
-        }
+        .container { padding: 0 14px; }
 
         .section-title {
             font-size: 13px;
             font-weight: 600;
             color: var(--gold-primary);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
+            letter-spacing: 1px;
+            margin: 15px 0 10px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        /* Card Styles */
-        .card-list {
+        /* Search Bar with Camera */
+        .search-box {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .card {
+            align-items: center;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 14px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .card:active {
-            transform: scale(0.98);
-            border-color: var(--gold-primary);
-        }
-
-        .card-avatar {
-            width: 52px;
-            height: 52px;
             border-radius: 14px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.05));
+            padding: 8px 14px;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .search-box i {
+            color: var(--gold-primary);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--card-bg);
             border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .qty-control {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--gold-primary);
-            flex-shrink: 0;
+            gap: 12px;
+            margin: 12px 0;
         }
 
-        .card-info {
-            flex-grow: 1;
+        .qty-btn {
+            background: var(--card-border);
+            color: #fff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
         }
 
-        .card-title {
-            font-size: 15px;
+        .btn-submit {
+            width: 100%;
+            background: var(--gold-gradient);
+            color: #000;
             font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 3px;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
-        .card-subtitle {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .card-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--gold-primary);
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        /* Bottom Navigation Bar */
+        /* Bottom Nav */
         .nav-bar {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 65px;
-            background: rgba(10, 14, 20, 0.9);
+            bottom: 0; left: 0; right: 0;
+            height: 60px;
+            background: rgba(10, 14, 20, 0.95);
             backdrop-filter: blur(16px);
             border-top: 1px solid var(--card-border);
             display: flex;
             justify-content: space-around;
             align-items: center;
             z-index: 1000;
-            padding-bottom: 5px;
         }
 
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             color: var(--text-muted);
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            width: 33.3%;
         }
 
-        .nav-item i {
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item.active {
-            color: var(--gold-primary);
-        }
-
-        .nav-item.active i {
-            transform: translateY(-2px);
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
-        }
-
-        /* Tab Control */
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .nav-item.active { color: var(--gold-primary); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <div class="header">
         <img src="logo.png" alt="Arshya Logo" class="brand-logo">
         <h1>ARSHYA MODERN</h1>
@@ -228,89 +189,48 @@
     </div>
 
     <div class="container">
-        <!-- TAB 1: USTALAR -->
-        <div id="tab-ustalar" class="tab-content active">
-            <div class="section-title"><i class="fa-solid fa-crown"></i> Milliy Qo'l Mehnatlari & Ustalar</div>
-            <div class="card-list">
-                <div class="card">
-                    <div class="card-avatar"><i class="fa-solid fa-user-ninja"></i></div>
-                    <div class="card-info">
-                        <div class="card-title">Gulnoza Jalgasova</div>
-                        <div class="card-subtitle">Nukus | Ethno-wear master</div>
-                        <div class="card-badge"><i class="fa-solid fa-star"></i> 5.0 (128 sharh)</div>
-                    </div>
+
+        <!-- TAB: FURNITURA -->
+        <div id="tab-furnitura" class="tab-content active">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Furnitura qidirish...">
+                <i class="fa-solid fa-camera" title="Rasm orqali qidirish" onclick="alert('Rasm orqali qidiruv tez orada ishga tushadi!')"></i>
+            </div>
+
+            <div class="section-title"><i class="fa-solid fa-boxes-stacked"></i> Tovar buyurtma qilish</div>
+
+            <div class="product-card">
+                <h3 style="font-size: 15px;">Zardo'zlik Ip (Oltin rang)</h3>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Dona narxi: 45,000 so'm (10 tadan ko'pga 40,000 so'm)</p>
+
+                <div class="qty-control">
+                    <span style="font-size: 12px;">Soni:</span>
+                    <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                    <span id="qty-val" style="font-weight: bold; font-size: 15px;">1</span>
+                    <button class="qty-btn" style="background: var(--gold-primary); color: #000;" onclick="changeQty(1)">+</button>
                 </div>
-                <div class="card">
-                    <div class="card-avatar"><i class="fa-solid fa-scissors"></i></div>
-                    <div class="card-info">
-                        <div class="card-title">Alisher Niyetullayev</div>
-                        <div class="card-subtitle">Nukus | Traditional Arts</div>
-                        <div class="card-badge"><i class="fa-solid fa-star"></i> 4.9 (94 sharh)</div>
-                    </div>
+
+                <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px;">
+                    Jami summa: <span id="total-val" style="color: var(--gold-primary);">45,000</span> so'm
                 </div>
+
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 11px; color: var(--gold-primary); display: block; margin-bottom: 5px;">To'lov cheki rasmini biriktiring:</label>
+                    <input type="file" id="receipt-file" accept="image/*" style="width: 100%; font-size: 11px; color: #fff;">
+                </div>
+
+                <button class="btn-submit" onclick="sendOrder()">To'lovni tasdiqlashga yuborish</button>
             </div>
         </div>
 
-        <!-- TAB 2: FURNITURA -->
-        <div id="tab-furnitura" class="tab-content">
-            <div class="section-title"><i class="fa-solid fa-gem"></i> Premium Furnitura & Aksessuarlar</div>
-            <div class="card-list">
-                <div class="card">
-                    <div class="card-avatar"><i class="fa-solid fa-scroll"></i></div>
-                    <div class="card-info">
-                        <div class="card-title">Ipak va Zardo'zlik Iplari</div>
-                        <div class="card-subtitle">Oliy navli turk va xitoy furnituralari</div>
-                        <div class="card-badge"><i class="fa-solid fa-tag"></i> Ombor mavjud</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-avatar"><i class="fa-solid fa-shirt"></i></div>
-                    <div class="card-info">
-                        <div class="card-title">Maxsus Tugmalar & Tasmasimonlar</div>
-                        <div class="card-subtitle">Eksklyuziv dizayndagi furnituralar</div>
-                        <div class="card-badge"><i class="fa-solid fa-tag"></i> Sifat kafolatlangan</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 3: STATISTIKA -->
-        <div id="tab-statistika" class="tab-content">
-            <div class="section-title"><i class="fa-solid fa-chart-pie"></i> Platforma Ko'rsatkichlari</div>
-            <div class="card-list">
-                <div class="card">
-                    <div class="card-avatar"><i class="fa-solid fa-users"></i></div>
-                    <div class="card-info">
-                        <div class="card-title">Aktiv Ustalar</div>
-                        <div class="card-subtitle">Jami ro'yxatdan o'tgan ustalar</div>
-                        <div class="card-badge">150+ Usta</div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-avatar"><i class="fa-solid fa-box-open"></i></div>
-                    <div class="card-info">
-                        <div class="card-title">Mahsulotlar Turi</div>
-                        <div class="card-subtitle">Sotuvdagi furnituralar soni</div>
-                        <div class="card-badge">500+ Turda</div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Nav -->
     <div class="nav-bar">
-        <div class="nav-item active" onclick="switchTab('ustalar', this)">
-            <i class="fa-solid fa-user-group"></i>
-            <span>Ustalar</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('furnitura', this)">
+        <div class="nav-item active">
             <i class="fa-solid fa-boxes-stacked"></i>
             <span>Furnitura</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('statistika', this)">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Statistika</span>
         </div>
     </div>
 
@@ -318,16 +238,38 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        function switchTab(tabName, element) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.getElementById('tab-' + tabName).classList.add('active');
+        let unitPrice = 45000;
+        let qty = 1;
 
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            element.classList.add('active');
+        function changeQty(delta) {
+            qty += delta;
+            if (qty < 1) qty = 1;
+
+            if (qty >= 10) {
+                unitPrice = 40000; // Ulgurji chegirma
+            } else {
+                unitPrice = 45000;
+            }
+
+            const total = qty * unitPrice;
+            document.getElementById('qty-val').innerText = qty;
+            document.getElementById('total-val').innerText = total.toLocaleString();
+        }
+
+        function sendOrder() {
+            const receiptInput = document.getElementById('receipt-file');
+            if (!receiptInput.files.length) {
+                alert("Iltimos, to'lov cheki rasmini biriktiring!");
+                return;
+            }
+
+            const total = qty * unitPrice;
+            tg.sendData(JSON.stringify({
+                action: "buyurtma",
+                item: "Zardo'zlik Ip (Oltin rang)",
+                qty: qty,
+                total: total
+            }));
         }
     </script>
 </body>
