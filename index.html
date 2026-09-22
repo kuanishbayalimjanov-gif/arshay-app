@@ -72,18 +72,6 @@
 
         .container { padding: 0 14px; }
 
-        .section-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gold-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 15px 0 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .search-box {
             display: flex;
             align-items: center;
@@ -107,6 +95,18 @@
         .search-box i {
             color: var(--gold-primary);
             font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 15px 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .product-card {
@@ -133,6 +133,9 @@
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-submit {
@@ -146,6 +149,12 @@
             font-size: 13px;
             cursor: pointer;
             margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-submit:active {
+            opacity: 0.8;
+            transform: scale(0.98);
         }
 
         .nav-bar {
@@ -217,12 +226,15 @@
     </div>
 
     <script>
+        // Telegram WebApp obyektini yuklash va kengaytirish
         const tg = window.Telegram.WebApp;
         tg.expand();
+        tg.ready();
 
         let unitPrice = 45000;
         let qty = 1;
 
+        // Miqdorni va umumiy narxni hisoblash
         function changeQty(delta) {
             qty += delta;
             if (qty < 1) qty = 1;
@@ -238,14 +250,20 @@
             document.getElementById('total-val').innerText = total.toLocaleString();
         }
 
+        // Ma'lumotlarni Python botga yuborish
         function sendOrder() {
             const total = qty * unitPrice;
-            tg.sendData(JSON.stringify({
+
+            const payload = {
                 action: "buyurtma",
                 item: "Zardo'zlik Ip (Oltin rang)",
                 qty: qty,
                 total: total
-            }));
+            };
+
+            // Telegram botga yuborish va oynani yopish
+            tg.sendData(JSON.stringify(payload));
+            tg.close();
         }
     </script>
 </body>
