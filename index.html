@@ -9,7 +9,7 @@
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #0a0e14 0%, #121824 100%);
-            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(212, 175, 55, 0.25);
             --gold-primary: #d4af37;
             --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7);
@@ -18,8 +18,7 @@
         }
 
         * {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
@@ -29,113 +28,81 @@
             background: var(--bg-gradient);
             color: var(--text-main);
             min-height: 100vh;
-            padding-bottom: 90px;
-            overflow-x: hidden;
+            padding-bottom: 80px;
         }
 
         .header {
             text-align: center;
-            padding: 20px 15px 10px;
-            background: rgba(10, 14, 20, 0.7);
-            backdrop-filter: blur(15px);
+            padding: 15px 10px;
+            background: rgba(10, 14, 20, 0.8);
             border-bottom: 1px solid var(--card-border);
-            margin-bottom: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .brand-logo {
-            width: 75px;
+            width: 60px;
             height: auto;
-            margin-bottom: 8px;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
             border-radius: 8px;
-            background: #ffffff;
-            padding: 4px;
+            background: #fff;
+            padding: 3px;
+            margin-bottom: 5px;
         }
 
         .header h1 {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
-            letter-spacing: 2px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
         }
 
-        .header p {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
+        .container { padding: 12px; }
 
-        .container { padding: 0 14px; }
-
-        .search-box {
+        .categories {
             display: flex;
-            align-items: center;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .cat-chip {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
             padding: 8px 14px;
-            margin-bottom: 15px;
-            gap: 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            white-space: nowrap;
+            color: var(--text-main);
         }
 
-        .search-box input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #fff;
-            width: 100%;
-            font-size: 13px;
+        .cat-chip.active {
+            background: var(--gold-primary);
+            color: #000;
+            font-weight: bold;
         }
 
-        .search-box i {
-            color: var(--gold-primary);
-            font-size: 16px;
-        }
-
-        .section-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gold-primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 15px 0 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
 
         .product-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 14px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .qty-control {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 12px 0;
+            padding: 14px;
         }
 
         .qty-btn {
             background: var(--card-border);
-            color: #fff;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            color: #fff; border: none;
+            width: 30px; height: 30px;
+            border-radius: 6px;
             font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .btn-submit {
@@ -145,88 +112,58 @@
             font-weight: 700;
             border: none;
             padding: 12px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 13px;
-            cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            cursor: pointer;
         }
-
-        .btn-submit:active {
-            opacity: 0.8;
-            transform: scale(0.98);
-        }
-
-        .nav-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            height: 60px;
-            background: rgba(10, 14, 20, 0.95);
-            backdrop-filter: blur(16px);
-            border-top: 1px solid var(--card-border);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            color: var(--text-muted);
-            font-size: 10px;
-        }
-
-        .nav-item.active { color: var(--gold-primary); }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <img src="logo.png" alt="Arshya Logo" class="brand-logo">
+        <img src="logo.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
         <h1>ARSHYA MODERN</h1>
-        <p>Tikuvchilik Furnituralari va Baza</p>
+        <p style="font-size: 11px; color: var(--text-muted);">Bosh Sahifa — Tikuvchilik Furnituralari</p>
     </div>
 
     <div class="container">
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Furnitura qidirish...">
-            <i class="fa-solid fa-camera"></i>
+        <!-- Kategoriyalar -->
+        <div class="categories">
+            <div class="cat-chip active">Barchasi</div>
+            <div class="cat-chip">Zardo'zlik</div>
+            <div class="cat-chip">Iplar</div>
+            <div class="cat-chip">Tugmalar</div>
+            <div class="cat-chip">Tasht/Qaychilar</div>
         </div>
 
-        <div class="section-title"><i class="fa-solid fa-boxes-stacked"></i> Tovar buyurtma qilish</div>
+        <h3 style="font-size: 14px; margin-bottom: 10px; color: var(--gold-primary);">
+            <i class="fa-solid fa-fire"></i> MASHHUR MAHSULOTLAR
+        </h3>
 
-        <div class="product-card">
-            <h3 style="font-size: 15px;">Zardo'zlik Ip (Oltin rang)</h3>
-            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Dona narxi: 45,000 so'm (10 tadan oshsa 40,000 so'm)</p>
+        <div class="product-grid">
+            <!-- Tovar 1 -->
+            <div class="product-card">
+                <h4 style="font-size: 15px;">Zardo'zlik Ip (Oltin rang)</h4>
+                <p style="font-size: 11px; color: var(--text-muted); margin: 4px 0;">Dona narxi: 45,000 so'm (10+ dona: 40,000 so'm)</p>
 
-            <div class="qty-control">
-                <span style="font-size: 12px;">Soni:</span>
-                <button class="qty-btn" onclick="changeQty(-1)">-</button>
-                <span id="qty-val" style="font-weight: bold; font-size: 15px;">1</span>
-                <button class="qty-btn" style="background: var(--gold-primary); color: #000;" onclick="changeQty(1)">+</button>
+                <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+                    <span style="font-size: 12px;">Soni:</span>
+                    <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                    <span id="qty-val" style="font-weight: bold;">1</span>
+                    <button class="qty-btn" style="background: var(--gold-primary); color: #000;" onclick="changeQty(1)">+</button>
+                </div>
+
+                <div style="font-size: 13px; font-weight: bold; margin-bottom: 8px;">
+                    Jami: <span id="total-val" style="color: var(--gold-primary);">45,000</span> so'm
+                </div>
+
+                <button class="btn-submit" onclick="sendOrder()">To'lovni tasdiqlashga yuborish</button>
             </div>
-
-            <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px;">
-                Jami summa: <span id="total-val" style="color: var(--gold-primary);">45,000</span> so'm
-            </div>
-
-            <button class="btn-submit" onclick="sendOrder()">To'lovni tasdiqlashga yuborish</button>
-        </div>
-    </div>
-
-    <div class="nav-bar">
-        <div class="nav-item active">
-            <i class="fa-solid fa-boxes-stacked"></i>
-            <span>Furnitura</span>
         </div>
     </div>
 
     <script>
-        // Telegram WebApp obyektini yuklash va kengaytirish
         const tg = window.Telegram.WebApp;
         tg.expand();
         tg.ready();
@@ -234,26 +171,19 @@
         let unitPrice = 45000;
         let qty = 1;
 
-        // Miqdorni va umumiy narxni hisoblash
         function changeQty(delta) {
             qty += delta;
             if (qty < 1) qty = 1;
 
-            if (qty >= 10) {
-                unitPrice = 40000;
-            } else {
-                unitPrice = 45000;
-            }
-
+            unitPrice = (qty >= 10) ? 40000 : 45000;
             const total = qty * unitPrice;
+
             document.getElementById('qty-val').innerText = qty;
             document.getElementById('total-val').innerText = total.toLocaleString();
         }
 
-        // Ma'lumotlarni Python botga yuborish
         function sendOrder() {
             const total = qty * unitPrice;
-
             const payload = {
                 action: "buyurtma",
                 item: "Zardo'zlik Ip (Oltin rang)",
@@ -261,7 +191,6 @@
                 total: total
             };
 
-            // Telegram botga yuborish va oynani yopish
             tg.sendData(JSON.stringify(payload));
             tg.close();
         }
