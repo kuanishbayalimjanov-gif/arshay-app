@@ -84,7 +84,6 @@
             gap: 8px;
         }
 
-        /* Search Bar with Camera */
         .search-box {
             display: flex;
             align-items: center;
@@ -108,10 +107,8 @@
         .search-box i {
             color: var(--gold-primary);
             font-size: 16px;
-            cursor: pointer;
         }
 
-        /* Product Card */
         .product-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -151,7 +148,6 @@
             margin-top: 10px;
         }
 
-        /* Bottom Nav */
         .nav-bar {
             position: fixed;
             bottom: 0; left: 0; right: 0;
@@ -172,12 +168,9 @@
             gap: 3px;
             color: var(--text-muted);
             font-size: 10px;
-            cursor: pointer;
         }
 
         .nav-item.active { color: var(--gold-primary); }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
     </style>
 </head>
 <body>
@@ -185,48 +178,37 @@
     <div class="header">
         <img src="logo.png" alt="Arshya Logo" class="brand-logo">
         <h1>ARSHYA MODERN</h1>
-        <p>Milliy va Zamonaviy Tikuvchilik Platformasi</p>
+        <p>Tikuvchilik Furnituralari va Baza</p>
     </div>
 
     <div class="container">
-
-        <!-- TAB: FURNITURA -->
-        <div id="tab-furnitura" class="tab-content active">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Furnitura qidirish...">
-                <i class="fa-solid fa-camera" title="Rasm orqali qidirish" onclick="alert('Rasm orqali qidiruv tez orada ishga tushadi!')"></i>
-            </div>
-
-            <div class="section-title"><i class="fa-solid fa-boxes-stacked"></i> Tovar buyurtma qilish</div>
-
-            <div class="product-card">
-                <h3 style="font-size: 15px;">Zardo'zlik Ip (Oltin rang)</h3>
-                <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Dona narxi: 45,000 so'm (10 tadan ko'pga 40,000 so'm)</p>
-
-                <div class="qty-control">
-                    <span style="font-size: 12px;">Soni:</span>
-                    <button class="qty-btn" onclick="changeQty(-1)">-</button>
-                    <span id="qty-val" style="font-weight: bold; font-size: 15px;">1</span>
-                    <button class="qty-btn" style="background: var(--gold-primary); color: #000;" onclick="changeQty(1)">+</button>
-                </div>
-
-                <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px;">
-                    Jami summa: <span id="total-val" style="color: var(--gold-primary);">45,000</span> so'm
-                </div>
-
-                <div style="margin-bottom: 10px;">
-                    <label style="font-size: 11px; color: var(--gold-primary); display: block; margin-bottom: 5px;">To'lov cheki rasmini biriktiring:</label>
-                    <input type="file" id="receipt-file" accept="image/*" style="width: 100%; font-size: 11px; color: #fff;">
-                </div>
-
-                <button class="btn-submit" onclick="sendOrder()">To'lovni tasdiqlashga yuborish</button>
-            </div>
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Furnitura qidirish...">
+            <i class="fa-solid fa-camera"></i>
         </div>
 
+        <div class="section-title"><i class="fa-solid fa-boxes-stacked"></i> Tovar buyurtma qilish</div>
+
+        <div class="product-card">
+            <h3 style="font-size: 15px;">Zardo'zlik Ip (Oltin rang)</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Dona narxi: 45,000 so'm (10 tadan oshsa 40,000 so'm)</p>
+
+            <div class="qty-control">
+                <span style="font-size: 12px;">Soni:</span>
+                <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                <span id="qty-val" style="font-weight: bold; font-size: 15px;">1</span>
+                <button class="qty-btn" style="background: var(--gold-primary); color: #000;" onclick="changeQty(1)">+</button>
+            </div>
+
+            <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px;">
+                Jami summa: <span id="total-val" style="color: var(--gold-primary);">45,000</span> so'm
+            </div>
+
+            <button class="btn-submit" onclick="sendOrder()">To'lovni tasdiqlashga yuborish</button>
+        </div>
     </div>
 
-    <!-- Bottom Nav -->
     <div class="nav-bar">
         <div class="nav-item active">
             <i class="fa-solid fa-boxes-stacked"></i>
@@ -246,7 +228,7 @@
             if (qty < 1) qty = 1;
 
             if (qty >= 10) {
-                unitPrice = 40000; // Ulgurji chegirma
+                unitPrice = 40000;
             } else {
                 unitPrice = 45000;
             }
@@ -257,12 +239,6 @@
         }
 
         function sendOrder() {
-            const receiptInput = document.getElementById('receipt-file');
-            if (!receiptInput.files.length) {
-                alert("Iltimos, to'lov cheki rasmini biriktiring!");
-                return;
-            }
-
             const total = qty * unitPrice;
             tg.sendData(JSON.stringify({
                 action: "buyurtma",
